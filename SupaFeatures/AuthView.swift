@@ -16,7 +16,7 @@ struct AuthView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Picker("Sign Up or Sign In", selection: $viewModel.authAction) {
+                Picker("Sign In or Sign Up", selection: $viewModel.authAction) {
                     ForEach(AuthAction.allCases, id: \.rawValue) { action in
                         Text(action.rawValue).tag(action)
                     }
@@ -24,6 +24,7 @@ struct AuthView: View {
                 .pickerStyle(.segmented)
                 
                 TextField("Email", text: $viewModel.email)
+                    .autocapitalization(.none)
                 SecureField("Password", text: $viewModel.password)
             }
             .toolbar {

@@ -59,7 +59,7 @@ final class ViewModel: ObservableObject {
     func update(_ feature: Feature, with text: String) async {
         
         guard let id = feature.id else {
-            print(" X Can't update feature \(feature.id)")
+            print(" X Can't update feature \(String(describing: feature.id))")
             return
         }
         

@@ -19,6 +19,8 @@ struct ContentView: View {
                     NavigationLink(value: feature) {
                         HStack {
                             Text(feature.text)
+                            //Text(feature.isComplete)
+                            //Userid is my id
                             
                             Spacer()
                             

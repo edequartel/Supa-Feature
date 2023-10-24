@@ -19,6 +19,7 @@ struct AddView: View {
         Form {
             TextField("Feature Description", text: $text)
         }
+        .navigationBarTitle("Add") 
         .toolbar {
             ToolbarItem {
                 Button {

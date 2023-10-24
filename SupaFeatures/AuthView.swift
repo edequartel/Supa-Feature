@@ -21,6 +21,7 @@ struct AuthView: View {
                         Text(action.rawValue).tag(action)
                     }
                 }
+                .navigationBarTitle("Authentication") 
                 .pickerStyle(.segmented)
                 
                 TextField("Email", text: $viewModel.email)

@@ -24,6 +24,7 @@ final class ViewModel: ObservableObject {
     @Published var authAction: AuthAction = .signUp
     
     @Published var features = [Feature]()
+//    @Published var actUser = ""
     
     @Published var showingAuthView = false
     @Published var email = ""
@@ -32,6 +33,10 @@ final class ViewModel: ObservableObject {
     let supabase = SupabaseClient(supabaseURL: Secrets.projectURL, supabaseKey: Secrets.apiKey)
     
     // MARK: - Database
+    func getUser()->String {
+//        return try await supabase.auth.session.user.id
+        return "my user"
+    }
     
     func createFeatureRequest(text: String) async throws {
         let user  = try await supabase.auth.session.user
@@ -59,7 +64,7 @@ final class ViewModel: ObservableObject {
     func update(_ feature: Feature, with text: String) async {
         
         guard let id = feature.id else {
-            print(" X Can't update feature \(String(describing: feature.id))")
+            print("Can't update feature \(String(describing: feature.id))")
             return
         }
         
@@ -73,7 +78,7 @@ final class ViewModel: ObservableObject {
                 .eq(column: "id", value: id)
                 .execute()
         } catch {
-            print(" X Error: \(error)")
+            print("Error: \(error)")
         }
     }
     
@@ -88,12 +93,12 @@ final class ViewModel: ObservableObject {
     // MARK: - Authentication
     
     func signUp() async throws {
-        let response = try await supabase.auth.signUp(email: email, password: password)
+        _ = try await supabase.auth.signUp(email: email, password: password)
     }
     
     func signIn() async throws {
         //??check i email or password is not empty
-        let session = try await supabase.auth.signIn(email: email, password: password)
+        _ = try await supabase.auth.signIn(email: email, password: password)
     }
     
     func isUserAuthenticated() async {
@@ -104,7 +109,7 @@ final class ViewModel: ObservableObject {
             isAuthenticated = false
         }
     }
-    
+       
     func signOut() async throws {
         try await supabase.auth.signOut()
         isAuthenticated = false

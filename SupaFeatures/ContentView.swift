@@ -18,9 +18,15 @@ struct ContentView: View {
                     
                     NavigationLink(value: feature) {
                         HStack {
-                            Text(feature.text)
-                            //Text(feature.isComplete)
-                            //Userid is my id
+                            VStack(alignment: .leading){
+                                Text(feature.text)
+                                Text("\(feature.userID)")
+                                    .font(.footnote)
+                                    .foregroundColor(Color.gray)
+                                Text(viewModel.getUser())
+                                    .font(.footnote)
+                                    .foregroundColor(Color.red)
+                            }
                             
                             Spacer()
                             
@@ -94,6 +100,7 @@ struct ContentView: View {
             } content: {
                 AuthView(viewModel: viewModel)
             }
+            .listRowInsets(EdgeInsets())
         }
     }
 }

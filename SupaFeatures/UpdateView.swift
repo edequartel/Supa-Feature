@@ -21,6 +21,7 @@ struct UpdateView: View {
         Form {
             TextField("Feature Description", text: $text, axis: .vertical)
         }
+        .navigationBarTitle("Update") 
         .onAppear {
             text = feature.text
         }
